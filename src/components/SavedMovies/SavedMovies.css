@@ -1,0 +1,18 @@
+.saved-movies {
+  background-color: #fff;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 950px) {
+  .saved-movies {
+    margin: 0 auto 230px auto;
+  }
+}
+
+@media (max-width: 650px) {
+  .saved-movies {
+    margin: 0 auto 214px auto;
+  }
+}

@@ -1,0 +1,137 @@
+.profile {
+  max-width: 410px;
+  margin: 0 auto;
+}
+
+.profile__title {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  color: #000000;
+  margin: 74px auto 0 auto;
+  padding: 0;
+}
+
+.profile__data-container {
+  margin: 123px 0 0 0;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+}
+
+.profile__subtitle {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+  color: #000000;
+  margin: 0;
+  padding: 17px 0 0 0;
+}
+
+.profile__subtitle-name {
+  padding: 0 0 16px 0;
+  border-bottom: 1px solid #E8E8E8;
+}
+
+.profile__data {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  text-align: right;
+  color: #000000;
+  margin: 0;
+  padding: 17px 0 0 0;
+}
+
+.profile__name {
+  padding: 0 0 16px 0;
+  border-bottom: 1px solid #E8E8E8;
+}
+
+.profile__edit-container {
+  margin: 220px auto 16px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.profile__edit {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  color: #000000;
+  text-decoration: none;
+  transition: opacity 0.6s;
+}
+
+.profile__edit:hover {
+  opacity: 0.7;
+}
+
+.profile__exit-container {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.profile__exit {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  color: #FF4062;
+  text-decoration: none;
+  transition: opacity 0.6s;
+}
+
+.profile__exit:hover {
+  opacity: 0.7;
+}
+
+@media (max-width: 950px) {
+  .profile__title {
+    margin: 236px auto 0 auto;
+  }
+
+  .profile__data-container {
+    margin: 96px 0 0 0;
+  }
+
+  .profile__edit-container {
+    margin: 210px auto 16px auto;
+  }
+}
+
+@media (max-width: 650px) {
+  .profile {
+    max-width: 260px;
+  }
+
+  .profile__title {
+    margin: 70px auto 0 auto;
+  }
+
+  .profile__data-container {
+    margin: 80px 0 0 0;
+  }
+
+  .profile__edit-container {
+    margin: 379px auto 16px auto;
+  }
+
+  .profile__edit {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .profile__exit {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
