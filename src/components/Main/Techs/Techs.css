@@ -76,6 +76,15 @@
   }
 }
 
+@media (max-width: 700px) {
+  .techs__container {
+    margin: 50px auto 0 auto;
+    grid-template-columns: repeat(2, 84px);
+    grid-template-rows: repeat(4, 57px);
+    row-gap: 10px;
+  }
+}
+
 @media (max-width: 650px) {
   .techs {
     background: #fff;
@@ -96,12 +105,5 @@
     margin: 23px auto 0 auto;
     line-height: 16px;
     max-width: 292px;
-  }
-
-  .techs__container {
-    margin: 50px auto 0 auto;
-    grid-template-columns: repeat(2, 84px);
-    grid-template-rows: repeat(4, 57px);
-    row-gap: 10px;
   }
 }

@@ -23,6 +23,12 @@
   margin-top: 110px;
 }
 
+@media (min-width: 1280px) {
+  .main__title-container {
+    max-width: 1280px;
+  }
+}
+
 @media (max-width: 950px) {
   .main__title_about-project {
     margin-top: 90px;
