@@ -7,7 +7,7 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import NotFoundPage from '../NotFoundPage/NotFoundPage'
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import ProtectedRouteElement from '../ProtectedRoute/ProtectedRoute';
 import { moviesApi } from '../../utils/MoviesApi';
 import * as auth from '../../utils/auth';
@@ -37,16 +37,12 @@ function App() {
 
   const [serverError, setServerError] = React.useState('');
 
-  const location = useLocation();
-
   const handleTokenCheck = () => {
     if (localStorage.getItem('jwt')) {
       const jwt = localStorage.getItem('jwt');
       auth.checkToken(jwt).then((res) => {
         if (res) {
           setLoggedIn(true);
-          console.log(location.pathname);
-          // navigate(localStorage.getItem('currentPath'), { replace: true });
           navigate('/movies');
         }
         else {
@@ -119,7 +115,6 @@ function App() {
       })
       .catch((err) => {
         console.log(`Попытка регистрации привела к ошибке ${err}`);
-        console.log(err, err.status, err.name, err.message);
         if (err === CONFLICT_ERROR) {
           setServerError('Пользователь с таким email уже существует.');
         } else {
