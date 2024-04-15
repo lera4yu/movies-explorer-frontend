@@ -14,7 +14,6 @@ function SearchForm(props) {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    console.log(inputValue, 'INPUT');
     if (!inputValue) {
       setError(true);
       return;
@@ -33,7 +32,6 @@ function SearchForm(props) {
         setInputValue(savedInputValue);
       }
       if (savedShortChecked) {
-        console.log(JSON.parse(savedShortChecked));
         setShortChecked(JSON.parse(savedShortChecked));
       }
     }

@@ -53,7 +53,10 @@ function Movies(props) {
 
   React.useEffect(() => {
     const savedFilteredMovies = localStorage.getItem("filteredMovies");
-    if (savedFilteredMovies) {
+    const savedInputValue = localStorage.getItem("selector");
+    const savedShortChecked = localStorage.getItem("isShortChecked");
+    if (savedFilteredMovies && (savedInputValue || savedShortChecked)) {
+      
       setFilteredMovies(JSON.parse(savedFilteredMovies));
     } else {
       setFilteredMovies(props.movies);

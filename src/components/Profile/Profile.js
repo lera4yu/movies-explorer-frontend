@@ -54,6 +54,7 @@ function Profile(props) {
     localStorage.removeItem("jwt");
     localStorage.removeItem("selector");
     localStorage.removeItem("isShortChecked");
+    localStorage.removeItem("filteredMovies");
     props.setLoggedIn(false);
     props.setCurrentUser({
       name: "",

@@ -165,6 +165,7 @@ function App() {
     mainApi.saveMovie(movie)
       .then((res) => {
         setSavedMovies([...savedMovies, res]);
+        localStorage.setItem("filteredMovies", JSON.stringify(updateSaveData(filteredMovies, res)));
         setFilteredMovies(updateSaveData(filteredMovies, res));
         setMovies(updateSaveData(movies, res));
       })
@@ -197,6 +198,7 @@ function App() {
         } else {
           setSavedMovies((state) => state.filter((c) => c.movieId !== movie.id));
         }
+        localStorage.setItem("filteredMovies", JSON.stringify(updateDeleteData(filteredMovies, movie)));
         setFilteredMovies(updateDeleteData(filteredMovies, movie));
         setMovies(updateDeleteData(movies, movie));
       })
