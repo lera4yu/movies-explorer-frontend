@@ -1,5 +1,5 @@
 .movies-card-list {
-  max-width: var(--calculate-width);
+  max-width: calc(1280px - 140px);
   margin: 0 auto;
 }
 
@@ -8,6 +8,12 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 59px 30px;
   margin: 80px 0 28px 0;
+}
+
+@media (max-width: 1250px) {
+  .movies-card-list {
+    max-width: var(--calculate-width);
+  }
 }
 
 @media (max-width: 950px) {

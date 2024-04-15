@@ -83,6 +83,15 @@
   text-overflow: ellipsis;
 }
 
+.register__error-server {
+  bottom: 65px;
+  right: auto;
+  width: 100%;
+  font-size: 11px;
+  line-height: 13px;
+  text-align: center;
+}
+
 .register__form-submit-btn {
   width: 100%;
   height: 45px;
@@ -97,6 +106,13 @@
   margin: 70px 0 0 0;
   padding: 0;
   border: none;
+  cursor: pointer;
+}
+
+.register__form-submit-btn:disabled {
+  background: #F8F8F8;
+  color: #C2C2C2;
+  cursor: auto;
 }
 
 .register__toggle-login {

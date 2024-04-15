@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const Login = ({ handleLogin, isLoading }) => {
+const Login = ({ handleLogin, isLoading, serverError, setServerError }) => {
   const [formValue, setFormValue] = useState({
     email: '',
     password: ''
@@ -13,6 +13,7 @@ const Login = ({ handleLogin, isLoading }) => {
   const handleChange = (e) => {
     const input = e.target;
     const { name, value } = e.target;
+    setServerError('');
 
     if (name === 'email') {
       if (!input.validity.valid) {
@@ -27,8 +28,6 @@ const Login = ({ handleLogin, isLoading }) => {
         setErrorPassword('');
       }
     }
-
-    console.log(errorEmail, errorPassword);
 
     setFormValue({
       ...formValue,
@@ -72,11 +71,13 @@ const Login = ({ handleLogin, isLoading }) => {
             onChange={handleChange} />
           <span className="login__error" id="passwordError">{errorPassword}</span>
         </div>
-        <button className="login__form-submit-btn" type="submit">{isLoading ? "Вход..." : "Войти"}</button>
+        <button className="login__form-submit-btn" type="submit"
+          disabled={!formValue.email || !formValue.password || errorEmail || errorPassword}>{isLoading ? "Вход..." : "Войти"}</button>
+        <span className="login__error login__error-server" id="serverError">{serverError}</span>
       </form>
       <div className="login__toggle-register">
         <p className="login__toggle-register-subtitle">Ещё не зарегистрированы?&nbsp;</p>
-        <Link to="/signup" className="login__toggle-register-link">Регистрация</Link>
+        <Link to="/signup" className="login__toggle-register-link" onClick={() => setServerError('')}>Регистрация</Link>
       </div>
     </section>
   );

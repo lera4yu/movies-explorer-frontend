@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { isValidName } from '../../utils/constants';
 
-const Register = ({ onRegister, isLoading }) => {
+const Register = ({ onRegister, isLoading, serverError, setServerError }) => {
   const [formValue, setFormValue] = useState({
     name: '',
     email: '',
@@ -15,11 +16,16 @@ const Register = ({ onRegister, isLoading }) => {
   const handleChange = (e) => {
     const input = e.target;
     const { name, value } = e.target;
+    setServerError('');
+    const isValid = isValidName.test(value);
 
     if (name === 'name') {
       if (!input.validity.valid) {
         setErrorName(input.validationMessage);
       } else {
+        if (!isValid) {
+          setServerError('Недопустимые символы в имени.');
+        }
         setErrorName('');
       }
     } else if (name === 'email') {
@@ -88,11 +94,13 @@ const Register = ({ onRegister, isLoading }) => {
             onChange={handleChange} />
           <span className="register__error" id="passwordError">{errorPassword}</span>
         </div>
-        <button className="register__form-submit-btn" type="submit">{isLoading ? "Регистрация..." : "Зарегистрироваться"}</button>
+        <button className="register__form-submit-btn" type="submit"
+          disabled={!formValue.email || !formValue.password || !formValue.name || errorName || errorEmail || errorPassword}>{isLoading ? "Регистрация..." : "Зарегистрироваться"}</button>
+        <span className="register__error register__error-server" id="serverError">{serverError}</span>
       </form>
       <div className="register__toggle-login">
         <p className="register__toggle-login-subtitle">Уже зарегистрированы?&nbsp;</p>
-        <Link to="/signin" className="register__toggle-login-link">Войти</Link>
+        <Link to="/signin" className="register__toggle-login-link" onClick={() => setServerError('')}>Войти</Link>
       </div>
     </section >
   </>

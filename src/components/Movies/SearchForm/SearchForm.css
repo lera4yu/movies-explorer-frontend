@@ -43,6 +43,26 @@
   outline: none;
 }
 
+.search-form__error {
+  display: none;
+  margin: 100px 0 0 40px;
+  padding: 0;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 12px;
+  color: #FF4062;
+  position: absolute;
+  max-width: 396px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-form__error-active {
+  display: block;
+}
+
 .search-form__btn {
   background: #000000;
   border-radius: 48px;
@@ -65,7 +85,7 @@
   opacity: 0.7;
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1400px) {
   .search-form {
     max-width: 1280px;
   }

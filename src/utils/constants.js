@@ -100,4 +100,17 @@ const savedCards = [
   }
 ];
 
-export { initialCards, savedCards };
+const checkRes = (res) => {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(res.status);
+};
+
+const CONFLICT_ERROR = 409;
+
+const UNAUTHORIZED_ERROR= 401;
+
+const isValidName = /^[a-zA-Zа-яА-ЯёЁ\s-]*$/;
+
+export { initialCards, savedCards, checkRes, CONFLICT_ERROR, UNAUTHORIZED_ERROR, isValidName };
