@@ -5,7 +5,6 @@ import Footer from "../Footer/Footer";
 import filterMovie from "../../utils/FilterMovie";
 import Preloader from "./Preloader/Preloader";
 import React from "react";
-import { useLocation } from "react-router-dom";
 
 function Movies(props) {
 
@@ -56,7 +55,6 @@ function Movies(props) {
     const savedInputValue = localStorage.getItem("selector");
     const savedShortChecked = localStorage.getItem("isShortChecked");
     if (savedFilteredMovies && (savedInputValue || savedShortChecked)) {
-      
       setFilteredMovies(JSON.parse(savedFilteredMovies));
     } else {
       setFilteredMovies(props.movies);
@@ -65,13 +63,11 @@ function Movies(props) {
   }, [props.movies]);
 
   const handleSearch = (searchData, isShortChecked) => {
-    props.setLoading(true);
     if (searchData) {
       setFilteredMovies(filterMovie(props.movies, searchData, isShortChecked));
     } else {
       setFilteredMovies(props.movies);
     }
-    props.setLoading(false);
   };
 
   const handleCheckbox = (searchData, isShortChecked) => {
@@ -82,6 +78,9 @@ function Movies(props) {
     localStorage.setItem("filteredMovies", JSON.stringify(filteredMovies));
   }, [filteredMovies]);
 
+  React.useEffect(() => {
+    props.setLoading(false);
+  }, [filteredMovies]);
 
   return (
     <>
@@ -91,7 +90,7 @@ function Movies(props) {
         isSavedMoviesActive={false}
         isProfileActive={false} />
       <section className="movies">
-        <SearchForm onSearch={handleSearch} handleCheckbox={handleCheckbox} />
+        <SearchForm onSearch={handleSearch} handleCheckbox={handleCheckbox} setLoading={props.setLoading} />
         {props.isLoading ? (
           <Preloader />
         ) : props.loadingError ? (

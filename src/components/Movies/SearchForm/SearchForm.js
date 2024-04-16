@@ -13,9 +13,11 @@ function SearchForm(props) {
   };
 
   const handleSubmit = (evt) => {
+    props.setLoading(true);
     evt.preventDefault();
     if (!inputValue) {
       setError(true);
+      props.setLoading(false);
       return;
     }
     setError(false);
@@ -40,6 +42,7 @@ function SearchForm(props) {
   }, [location.pathname]);
 
   const handleCheckbox = () => {
+    props.setLoading(true);
     setShortChecked(!isShortChecked);
     props.handleCheckbox(inputValue, !isShortChecked);
     if (location.pathname === "/movies") {

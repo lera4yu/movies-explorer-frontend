@@ -55,18 +55,20 @@ function SavedMovies(props) {
   }, [props.movies]);
 
   const handleSearch = (searchData, isShortChecked) => {
-    props.setLoading(true);
     if (searchData) {
       setFilteredMovies(filterMovie(props.movies, searchData, isShortChecked));
     } else {
       setFilteredMovies(props.movies);
     }
-    props.setLoading(false);
   };
 
   const handleCheckbox = (searchData, isShortChecked) => {
     setFilteredMovies(filterMovie(props.movies, searchData, isShortChecked));
   };
+
+  React.useEffect(() => {
+    props.setLoading(false);
+  }, [filteredMovies]);
 
   return (
     <>
@@ -76,7 +78,7 @@ function SavedMovies(props) {
         isSavedMoviesActive={true}
         isProfileActive={false} />
       <section className="saved-movies">
-        <SearchForm onSearch={handleSearch} handleCheckbox={handleCheckbox} />
+        <SearchForm onSearch={handleSearch} handleCheckbox={handleCheckbox} setLoading = {props.setLoading}/>
         {props.isLoading ? (
           <Preloader />
         ) : props.loadingError ? (
