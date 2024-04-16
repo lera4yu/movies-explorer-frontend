@@ -51,7 +51,11 @@ function App() {
       auth.checkToken(jwt).then((res) => {
         if (res) {
           setLoggedIn(true);
-          navigate(pathname, { replace: true });
+          if (!(pathname === '/signin' || pathname === 'signup')) {
+            navigate(pathname, { replace: true });
+          } else {
+            navigate('/movies', { replace: true });
+           }
         }
         else {
           setLoggedIn(false);
@@ -259,7 +263,7 @@ function App() {
             <Route path="/signup" element={<Register onRegister={handleRegister} isLoading={isLoading} serverError={serverError} setServerError={setServerError} />} />
             <Route path="/profile" element={<ProtectedRouteElement element={Profile} isLoading={isLoading} loggedIn={isLoggedIn} setLoggedIn={setLoggedIn}
               currentUser={currentUser} setCurrentUser={setCurrentUser} onEdit={handleEdit} serverError={serverError} setServerError={setServerError}
-              updateProfileSuccess={updateProfileSuccess} setUpdateProfileSuccess={setUpdateProfileSuccess} editing = {editing} setEditing = {setEditing}/>} />
+              updateProfileSuccess={updateProfileSuccess} setUpdateProfileSuccess={setUpdateProfileSuccess} editing={editing} setEditing={setEditing} />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>
