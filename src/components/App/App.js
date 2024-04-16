@@ -110,7 +110,7 @@ function App() {
       .then((res) => {
         if (res) {
           setServerError('');
-          navigate('/signin', { replace: true });
+          handleLogin(email, password);
         }
       })
       .catch((err) => {

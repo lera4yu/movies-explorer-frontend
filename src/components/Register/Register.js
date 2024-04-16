@@ -17,7 +17,7 @@ const Register = ({ onRegister, isLoading, serverError, setServerError }) => {
     const input = e.target;
     const { name, value } = e.target;
     setServerError('');
-    
+
     const isValidNameReg = isValidName.test(value);
     const isValidEmailReg = isValidEmail.test(value);
 
@@ -104,7 +104,7 @@ const Register = ({ onRegister, isLoading, serverError, setServerError }) => {
           <span className="register__error" id="passwordError">{errorPassword}</span>
         </div>
         <button className="register__form-submit-btn" type="submit"
-          disabled={!formValue.email || !formValue.password || !formValue.name || errorName || errorEmail || errorPassword}>{isLoading ? "Регистрация..." : "Зарегистрироваться"}</button>
+          disabled={!formValue.email || !formValue.password || !formValue.name || errorName || errorEmail || errorPassword || serverError}>{isLoading ? "Регистрация..." : "Зарегистрироваться"}</button>
         <span className="register__error register__error-server" id="serverError">{serverError}</span>
       </form>
       <div className="register__toggle-login">

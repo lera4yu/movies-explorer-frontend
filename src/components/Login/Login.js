@@ -80,7 +80,7 @@ const Login = ({ handleLogin, isLoading, serverError, setServerError }) => {
           <span className="login__error" id="passwordError">{errorPassword}</span>
         </div>
         <button className="login__form-submit-btn" type="submit"
-          disabled={!formValue.email || !formValue.password || errorEmail || errorPassword}>{isLoading ? "Вход..." : "Войти"}</button>
+          disabled={!formValue.email || !formValue.password || errorEmail || errorPassword || serverError}>{isLoading ? "Вход..." : "Войти"}</button>
         <span className="login__error login__error-server" id="serverError">{serverError}</span>
       </form>
       <div className="login__toggle-register">
