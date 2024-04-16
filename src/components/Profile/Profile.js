@@ -11,6 +11,10 @@ function Profile(props) {
 
   const [formValue, setFormValue] = React.useState(props.currentUser);
 
+  React.useEffect(() => {
+    setFormValue(props.currentUser);
+  }, [props.currentUser]);
+
   const [editing, setEditing] = [props.editing, props.setEditing];
 
   const [errorName, setErrorName] = React.useState('');

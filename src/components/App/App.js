@@ -21,7 +21,7 @@ function App() {
 
   const [loadingError, setLoadingError] = React.useState(false);
 
-  const [currentUser, setCurrentUser] = React.useState({ name: '', about: '' });
+  const [currentUser, setCurrentUser] = React.useState({ name: '', email: '' });
 
   const [updateProfileSuccess, setUpdateProfileSuccess] = React.useState(false);
 
