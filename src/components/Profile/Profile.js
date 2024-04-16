@@ -1,7 +1,7 @@
 import Header from "../Header/Header";
 import { Link } from "react-router-dom";
 import React from "react";
-import { isValidEmail, isValidName } from "../../utils/constants";
+import { IS_VALID_EMAIL_REGULAR, IS_VALID_NAME_REGULAR } from "../../utils/constants";
 
 function Profile(props) {
 
@@ -25,8 +25,8 @@ function Profile(props) {
     const input = e.target;
     const { name, value } = e.target;
 
-    const isValidNameReg = isValidName.test(value);
-    const isValidEmailReg = isValidEmail.test(value);
+    const isValidNameReg = IS_VALID_NAME_REGULAR.test(value);
+    const isValidEmailReg = IS_VALID_EMAIL_REGULAR.test(value);
 
     setError('');
     props.setServerError('');

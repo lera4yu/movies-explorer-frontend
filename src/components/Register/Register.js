@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { isValidName, isValidEmail } from '../../utils/constants';
+import { IS_VALID_EMAIL_REGULAR, IS_VALID_NAME_REGULAR } from "../../utils/constants";
 
 const Register = ({ onRegister, isLoading, serverError, setServerError }) => {
   const [formValue, setFormValue] = useState({
@@ -18,8 +18,8 @@ const Register = ({ onRegister, isLoading, serverError, setServerError }) => {
     const { name, value } = e.target;
     setServerError('');
 
-    const isValidNameReg = isValidName.test(value);
-    const isValidEmailReg = isValidEmail.test(value);
+    const isValidNameReg = IS_VALID_NAME_REGULAR.test(value);
+    const isValidEmailReg = IS_VALID_EMAIL_REGULAR.test(value);
 
     if (name === 'name') {
       if (!input.validity.valid) {

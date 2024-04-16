@@ -1,3 +1,5 @@
+import {SHORT_MOVIE_DURATION} from './constants';
+
 export default function filterMovie(initialMovies, selector, isShortChecked) {
 
   let filterMovies = [...initialMovies];
@@ -21,7 +23,7 @@ export default function filterMovie(initialMovies, selector, isShortChecked) {
   }
 
   if (isShortChecked) {
-    return filterMovies.filter((movie) => movie.duration <= 40);
+    return filterMovies.filter((movie) => movie.duration <= SHORT_MOVIE_DURATION);
   } else {
     return filterMovies;
   }

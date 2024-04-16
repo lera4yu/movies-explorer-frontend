@@ -5,15 +5,16 @@ import Footer from "../Footer/Footer";
 import Preloader from "../Movies/Preloader/Preloader";
 import filterMovie from "../../utils/FilterMovie";
 import React from "react";
+import {SCREEN_WIDTH_BIG, SCREEN_WIDTH_MEDIUM, CARD_ITEMS_SIZE_BIG, CARD_ITEMS_SIZE_REGULAR, CARD_ITEMS_SIZE_SMALL, SEC_DELAY} from '../../utils/constants';
 
 function SavedMovies(props) {
   function getItemsCount() {
-    if (window.innerWidth > 950) {
-      return [12, 3];
-    } else if (window.innerWidth > 650) {
-      return [8, 2];
+    if (window.innerWidth > SCREEN_WIDTH_BIG) {
+      return CARD_ITEMS_SIZE_BIG;
+    } else if (window.innerWidth > SCREEN_WIDTH_MEDIUM) {
+      return CARD_ITEMS_SIZE_REGULAR;
     } else {
-      return [5, 2];
+      return CARD_ITEMS_SIZE_SMALL;
     }
   }
 
@@ -31,7 +32,7 @@ function SavedMovies(props) {
   React.useEffect(() => {
 
     const handleResizeWithTimeout = () => {
-      setTimeout(handleResize, 250);
+      setTimeout(handleResize, SEC_DELAY);
     };
 
     window.addEventListener('resize', handleResizeWithTimeout);

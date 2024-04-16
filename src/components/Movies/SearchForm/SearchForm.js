@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import FilterCheckBox from "./FilterCheckBox/FilterCheckBox";
+import {SCREEN_WIDTH_MEDIUM} from '../../../utils/constants';
 
 function SearchForm(props) {
   const [isShortChecked, setShortChecked] = React.useState(false);
@@ -59,9 +60,9 @@ function SearchForm(props) {
         <input type="text" className="search-form__input" placeholder="Фильм" onChange={handleInput} value={inputValue} />
         <span className="search-form__error" id="searchError">{error || props.serverError}</span>
         <button className="search-form__btn">Найти</button>
-        {(window.innerWidth > 650) ? (<FilterCheckBox onChange={handleCheckbox} isShortChecked={isShortChecked} setShortChecked={setShortChecked} />) : (<></>)}
+        {(window.innerWidth > SCREEN_WIDTH_MEDIUM) ? (<FilterCheckBox onChange={handleCheckbox} isShortChecked={isShortChecked} setShortChecked={setShortChecked} />) : (<></>)}
       </form>
-      {(window.innerWidth <= 650) ? (<FilterCheckBox onChange={handleCheckbox} isShortChecked={isShortChecked} setShortChecked={setShortChecked} />) : (<></>)}
+      {(window.innerWidth <= SCREEN_WIDTH_MEDIUM) ? (<FilterCheckBox onChange={handleCheckbox} isShortChecked={isShortChecked} setShortChecked={setShortChecked} />) : (<></>)}
     </section>
   );
 }

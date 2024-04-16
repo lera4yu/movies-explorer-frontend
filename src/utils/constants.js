@@ -109,10 +109,28 @@ const checkRes = (res) => {
 
 const CONFLICT_ERROR = 409;
 
-const UNAUTHORIZED_ERROR= 401;
+const UNAUTHORIZED_ERROR = 401;
 
-const isValidName = /^[a-zA-Zа-яА-ЯёЁ\s-]*$/;
+const IS_VALID_NAME_REGULAR = /^[a-zA-Zа-яА-ЯёЁ\s-]*$/;
 
-const isValidEmail = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+const IS_VALID_EMAIL_REGULAR = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
 
-export { initialCards, savedCards, checkRes, CONFLICT_ERROR, UNAUTHORIZED_ERROR, isValidName, isValidEmail };
+const SCREEN_WIDTH_BIG = 950;
+
+const SCREEN_WIDTH_MEDIUM = 650;
+
+const CARD_ITEMS_SIZE_BIG = [12, 3];
+
+const CARD_ITEMS_SIZE_REGULAR = [8, 2];
+
+const CARD_ITEMS_SIZE_SMALL = [5, 2];
+
+const SEC_DELAY = 250;
+
+const SHORT_MOVIE_DURATION = 40;
+
+export {
+  initialCards, savedCards, checkRes, CONFLICT_ERROR, UNAUTHORIZED_ERROR,
+  IS_VALID_NAME_REGULAR, IS_VALID_EMAIL_REGULAR, SCREEN_WIDTH_BIG, SCREEN_WIDTH_MEDIUM,
+  CARD_ITEMS_SIZE_BIG, CARD_ITEMS_SIZE_REGULAR, CARD_ITEMS_SIZE_SMALL, SEC_DELAY, SHORT_MOVIE_DURATION
+};
