@@ -113,4 +113,6 @@ const UNAUTHORIZED_ERROR= 401;
 
 const isValidName = /^[a-zA-Zа-яА-ЯёЁ\s-]*$/;
 
-export { initialCards, savedCards, checkRes, CONFLICT_ERROR, UNAUTHORIZED_ERROR, isValidName };
+const isValidEmail = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+
+export { initialCards, savedCards, checkRes, CONFLICT_ERROR, UNAUTHORIZED_ERROR, isValidName, isValidEmail };

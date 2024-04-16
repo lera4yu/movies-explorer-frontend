@@ -1,7 +1,7 @@
 import Header from "../Header/Header";
 import { Link } from "react-router-dom";
 import React from "react";
-import { isValidName } from "../../utils/constants";
+import { isValidEmail, isValidName } from "../../utils/constants";
 
 function Profile(props) {
 
@@ -15,25 +15,29 @@ function Profile(props) {
   const handleChange = (e) => {
     const input = e.target;
     const { name, value } = e.target;
-    const isValid = isValidName.test(value);
+    
+    const isValidNameReg = isValidName.test(value);
+    const isValidEmailReg = isValidEmail.test(value);
 
     if (name === 'name') {
       if (!input.validity.valid) {
         setErrorName(input.validationMessage);
       } else {
-        if (!isValid) {
-          setError('Недопустимые символы в имени.');
+        if (!isValidNameReg) {
+          setErrorName('Недопустимые символы в имени.');
         } else {
-          setError('');
+          setErrorName('');
         }
-        setErrorName('');
       }
     } else if (name === 'email') {
       if (!input.validity.valid) {
         setErrorEmail(input.validationMessage);
       } else {
-        setErrorEmail('');
-        setError('');
+        if (!isValidEmailReg) {
+          setErrorEmail('Формат email неверный');
+        } else {
+          setErrorEmail('');
+        }
       }
     }
 

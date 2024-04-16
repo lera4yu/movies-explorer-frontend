@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { isValidEmail } from '../../utils/constants';
 
 const Login = ({ handleLogin, isLoading, serverError, setServerError }) => {
   const [formValue, setFormValue] = useState({
@@ -14,12 +15,17 @@ const Login = ({ handleLogin, isLoading, serverError, setServerError }) => {
     const input = e.target;
     const { name, value } = e.target;
     setServerError('');
+    const isValidEmailReg = isValidEmail.test(value);
 
     if (name === 'email') {
       if (!input.validity.valid) {
         setErrorEmail(input.validationMessage);
       } else {
-        setErrorEmail('');
+        if (!isValidEmailReg) {
+          setErrorEmail('Формат email неверный');
+        } else {
+          setErrorEmail('');
+        }
       }
     } else if (name === 'password') {
       if (!input.validity.valid) {

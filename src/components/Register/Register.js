@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { isValidName } from '../../utils/constants';
+import { isValidName, isValidEmail } from '../../utils/constants';
 
 const Register = ({ onRegister, isLoading, serverError, setServerError }) => {
   const [formValue, setFormValue] = useState({
@@ -17,22 +17,29 @@ const Register = ({ onRegister, isLoading, serverError, setServerError }) => {
     const input = e.target;
     const { name, value } = e.target;
     setServerError('');
-    const isValid = isValidName.test(value);
+    
+    const isValidNameReg = isValidName.test(value);
+    const isValidEmailReg = isValidEmail.test(value);
 
     if (name === 'name') {
       if (!input.validity.valid) {
         setErrorName(input.validationMessage);
       } else {
-        if (!isValid) {
-          setServerError('Недопустимые символы в имени.');
+        if (!isValidNameReg) {
+          setErrorName('Недопустимые символы в имени.');
+        } else {
+          setErrorName('');
         }
-        setErrorName('');
       }
     } else if (name === 'email') {
       if (!input.validity.valid) {
         setErrorEmail(input.validationMessage);
       } else {
-        setErrorEmail('');
+        if (!isValidEmailReg) {
+          setErrorEmail('Формат email неверный');
+        } else {
+          setErrorEmail('');
+        }
       }
     } else if (name === 'password') {
       if (!input.validity.valid) {
@@ -56,7 +63,7 @@ const Register = ({ onRegister, isLoading, serverError, setServerError }) => {
   return (<>
     <section className="register">
       <Link to="/">
-      <div className="register__logo" />
+        <div className="register__logo" />
       </Link>
       <h2 className="register__title">Добро пожаловать!</h2>
       <form className="register__form" onSubmit={handleSubmit}>
