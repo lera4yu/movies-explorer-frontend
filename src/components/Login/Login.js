@@ -45,7 +45,9 @@ const Login = ({ handleLogin, isLoading, serverError, setServerError }) => {
 
   return (
     <section className="login">
-      <div className="login__logo"></div>
+      <Link to="/">
+      <div className="login__logo" />
+      </Link>
       <h2 className="login__title">Рады видеть!</h2>
       <form className="login__form" onSubmit={handleSubmit}>
         <div className="input__conatiner">
