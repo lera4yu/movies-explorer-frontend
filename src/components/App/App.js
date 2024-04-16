@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
@@ -27,6 +27,10 @@ function App() {
 
   const navigate = useNavigate();
 
+  const location = useLocation();
+
+  const pathname = location.pathname;
+
   const [movies, setMovies] = React.useState([]);
 
   const [filteredMovies, setFilteredMovies] = React.useState(movies);
@@ -47,11 +51,10 @@ function App() {
       auth.checkToken(jwt).then((res) => {
         if (res) {
           setLoggedIn(true);
-          navigate('/movies');
+          navigate(pathname, { replace: true });
         }
         else {
           setLoggedIn(false);
-          navigate('/signin', { replace: true })
         }
       });
     }
