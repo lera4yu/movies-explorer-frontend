@@ -58,9 +58,9 @@ function SearchForm(props) {
         <input type="text" className="search-form__input" placeholder="Фильм" onChange={handleInput} value={inputValue} />
         <span className={`search-form__error ${!error ? "" : "search-form__error-active"}`} id="searchError">Нужно ввести ключевое слово</span>
         <button className="search-form__btn">Найти</button>
-        {(window.innerWidth >= 650) ? (<FilterCheckBox onChange={handleCheckbox} isShortChecked={isShortChecked} setShortChecked={setShortChecked} />) : (<></>)}
+        {(window.innerWidth > 650) ? (<FilterCheckBox onChange={handleCheckbox} isShortChecked={isShortChecked} setShortChecked={setShortChecked} />) : (<></>)}
       </form>
-      {(window.innerWidth < 650) ? (<FilterCheckBox onChange={handleCheckbox} isShortChecked={isShortChecked} setShortChecked={setShortChecked} />) : (<></>)}
+      {(window.innerWidth <= 650) ? (<FilterCheckBox onChange={handleCheckbox} isShortChecked={isShortChecked} setShortChecked={setShortChecked} />) : (<></>)}
     </section>
   );
 }

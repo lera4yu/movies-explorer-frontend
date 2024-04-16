@@ -8,9 +8,9 @@ import React from "react";
 
 function SavedMovies(props) {
   function getItemsCount() {
-    if (window.innerWidth >= 950) {
+    if (window.innerWidth > 950) {
       return [12, 3];
-    } else if (window.innerWidth >= 650) {
+    } else if (window.innerWidth > 650) {
       return [8, 2];
     } else {
       return [5, 2];
@@ -41,10 +41,8 @@ function SavedMovies(props) {
     };
   }, []);
 
-  const [shownItems, setShownItems] = React.useState(maxItems);
-
   const toggleShowMore = () => {
-    setShownItems(shownItems + plusItems);
+    setMaxItems(maxItems + plusItems);
   };
 
   const [filteredMovies, setFilteredMovies] = React.useState(props.movies);
@@ -86,9 +84,9 @@ function SavedMovies(props) {
         ) : filteredMovies.length === 0 && !props.isLoading ? (
           <p className="preloader__text">Ничего не найдено</p>
         ) : (<>
-          <MoviesCardList onSave={props.onSave} onDelete={props.onDelete} cardsList={filteredMovies.slice(0, Math.max(shownItems, maxItems)).map((movie) => { return { ...movie, isDelete: true } })}
+          <MoviesCardList onSave={props.onSave} onDelete={props.onDelete} cardsList={filteredMovies.slice(0, Math.max(maxItems, maxItems)).map((movie) => { return { ...movie, isDelete: true } })}
             filteredMovies={filteredMovies} moviesType = {props.moviesType}/>
-          {filteredMovies.length > shownItems && <button className="movies__more-btn" onClick={toggleShowMore}>Ещё</button>}
+          {filteredMovies.length > maxItems && <button className="movies__more-btn" onClick={toggleShowMore}>Ещё</button>}
         </>)}
       </section>
       <Footer />
