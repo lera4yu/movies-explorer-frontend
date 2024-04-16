@@ -88,7 +88,7 @@ function Movies(props) {
         isSavedMoviesActive={false}
         isProfileActive={false} />
       <section className="movies">
-        <SearchForm onSearch={handleSearch} handleCheckbox={handleCheckbox} setLoading={props.setLoading} />
+        <SearchForm onSearch={handleSearch} handleCheckbox={handleCheckbox} setLoading={props.setLoading} serverError={props.serverError} setServerError={props.setServerError}/>
         {props.isLoading ? (
           <Preloader />
         ) : props.loadingError ? (

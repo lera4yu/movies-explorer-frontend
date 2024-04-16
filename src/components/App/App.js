@@ -55,7 +55,7 @@ function App() {
             navigate(pathname, { replace: true });
           } else {
             navigate('/movies', { replace: true });
-           }
+          }
         }
         else {
           setLoggedIn(false);
@@ -106,9 +106,11 @@ function App() {
         })
         setMovies(moviesWithSavedFlag);
         setFilteredMovies(moviesWithSavedFlag);
+        setServerError('');
       })
         .catch((err) => {
           console.log(`Получение информации о фильмах привело к ошибке ${err}`);
+          setServerError('При получении информации о фильмах произошла ошибка');
           setLoadingError(true);
         })
         .finally((res) => setLoadingMovie(false));
@@ -184,7 +186,12 @@ function App() {
         localStorage.setItem("filteredMovies", JSON.stringify(updateSaveData(filteredMovies, res)));
         setFilteredMovies(updateSaveData(filteredMovies, res));
         setMovies(updateSaveData(movies, res));
+        setServerError('');
       })
+      .catch((err) => {
+        console.log(`Сохранение фильма привело к ошибке ${err}`);
+        setServerError('При сохранении фильма произошла ошибка');
+      });
   }
 
   function updateSaveData(movieArray, movie) {
@@ -217,9 +224,11 @@ function App() {
         localStorage.setItem("filteredMovies", JSON.stringify(updateDeleteData(filteredMovies, movie)));
         setFilteredMovies(updateDeleteData(filteredMovies, movie));
         setMovies(updateDeleteData(movies, movie));
+        setServerError('');
       })
       .catch((err) => {
         console.log(`Удаление фильма привело к ошибке ${err}`);
+        setServerError('При удалении фильма произошла ошибка');
       });
   }
 
@@ -254,17 +263,17 @@ function App() {
             <Route path="/movies" element={<ProtectedRouteElement element={Movies} setMovies={setMovies} loggedIn={isLoggedIn} movies={movies}
               isLoading={isLoadingMovie} setLoading={setLoadingMovie} loadingError={loadingError}
               setLoadingError={setLoadingError} onSave={handleMovieSave} onDelete={handleMovieDelete}
-              filteredMovies={filteredMovies} setFilteredMovies={setFilteredMovies} moviesType="initial" />} />
+              filteredMovies={filteredMovies} setFilteredMovies={setFilteredMovies} moviesType="initial" serverError={serverError} setServerError={setServerError}/>} />
             <Route path="/saved-movies" element={<ProtectedRouteElement element={SavedMovies} setMovies={setSavedMovies}
               movies={savedMovies} isLoading={isLoadingMovie} setLoading={setLoadingMovie} loadingError={loadingError}
               setLoadingError={setLoadingError} onSave={handleMovieSave} loggedIn={isLoggedIn} onDelete={handleMovieDelete}
-              filteredMovies={filteredMovies} setFilteredMovies={setFilteredMovies} moviesType="saved" />} />
+              filteredMovies={filteredMovies} setFilteredMovies={setFilteredMovies} moviesType="saved" serverError={serverError} setServerError={setServerError}/>} />
             <Route path="/signin" element={<Login handleLogin={handleLogin} isLoading={isLoading} serverError={serverError} setServerError={setServerError} />} />
             <Route path="/signup" element={<Register onRegister={handleRegister} isLoading={isLoading} serverError={serverError} setServerError={setServerError} />} />
             <Route path="/profile" element={<ProtectedRouteElement element={Profile} isLoading={isLoading} loggedIn={isLoggedIn} setLoggedIn={setLoggedIn}
               currentUser={currentUser} setCurrentUser={setCurrentUser} onEdit={handleEdit} serverError={serverError} setServerError={setServerError}
               updateProfileSuccess={updateProfileSuccess} setUpdateProfileSuccess={setUpdateProfileSuccess} editing={editing} setEditing={setEditing} />} />
-            <Route path="*" element={<NotFoundPage navigate = {navigate}/>} />
+            <Route path="*" element={<NotFoundPage navigate={navigate} />} />
           </Routes>
         </div>
       </div>

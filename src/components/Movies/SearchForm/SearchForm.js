@@ -4,27 +4,28 @@ import FilterCheckBox from "./FilterCheckBox/FilterCheckBox";
 
 function SearchForm(props) {
   const [isShortChecked, setShortChecked] = React.useState(false);
-  const [error, setError] = React.useState(false);
+  const [error, setError] = React.useState('');
   const [inputValue, setInputValue] = React.useState("");
   const location = useLocation();
 
   const handleInput = (evt) => {
     setInputValue(evt.target.value);
+    setError('');
   };
 
   const handleSubmit = (evt) => {
     props.setLoading(true);
     evt.preventDefault();
     if (!inputValue) {
-      setError(true);
+      setError('Нужно ввести ключевое слово');
       props.setLoading(false);
       return;
     }
-    setError(false);
+    setError('');
     props.onSearch(inputValue, isShortChecked);
     if (location.pathname === "/movies") {
       localStorage.setItem("selector", inputValue);
-      localStorage.setItem("isShortChecked", JSON.stringify(!isShortChecked));
+      localStorage.setItem("isShortChecked", JSON.stringify(isShortChecked));
     }
   };
 
@@ -56,7 +57,7 @@ function SearchForm(props) {
       <form className="search-form__container" noValidate autoComplete="off" onSubmit={handleSubmit}>
         <div className="search-form__logo"></div>
         <input type="text" className="search-form__input" placeholder="Фильм" onChange={handleInput} value={inputValue} />
-        <span className={`search-form__error ${!error ? "" : "search-form__error-active"}`} id="searchError">Нужно ввести ключевое слово</span>
+        <span className="search-form__error" id="searchError">{error || props.serverError}</span>
         <button className="search-form__btn">Найти</button>
         {(window.innerWidth > 650) ? (<FilterCheckBox onChange={handleCheckbox} isShortChecked={isShortChecked} setShortChecked={setShortChecked} />) : (<></>)}
       </form>
