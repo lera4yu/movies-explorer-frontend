@@ -264,7 +264,7 @@ function App() {
             <Route path="/profile" element={<ProtectedRouteElement element={Profile} isLoading={isLoading} loggedIn={isLoggedIn} setLoggedIn={setLoggedIn}
               currentUser={currentUser} setCurrentUser={setCurrentUser} onEdit={handleEdit} serverError={serverError} setServerError={setServerError}
               updateProfileSuccess={updateProfileSuccess} setUpdateProfileSuccess={setUpdateProfileSuccess} editing={editing} setEditing={setEditing} />} />
-            <Route path="*" element={<NotFoundPage />} />
+            <Route path="*" element={<NotFoundPage navigate = {navigate}/>} />
           </Routes>
         </div>
       </div>
