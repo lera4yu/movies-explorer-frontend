@@ -141,7 +141,7 @@ function Profile(props) {
         </div>
         <div className="profile__exit-container">
           {!editing ? (
-            <Link to="/signin" className="profile__exit" onClick={signOut}>Выйти из аккаунта</Link>) : (<></>)}
+            <Link to="/" className="profile__exit" onClick={signOut}>Выйти из аккаунта</Link>) : (<></>)}
         </div>
       </form>
     </>
