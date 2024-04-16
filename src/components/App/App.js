@@ -23,6 +23,8 @@ function App() {
 
   const [currentUser, setCurrentUser] = React.useState({ name: '', about: '' });
 
+  const [updateProfileSuccess, setUpdateProfileSuccess] = React.useState(false);
+
   const navigate = useNavigate();
 
   const [movies, setMovies] = React.useState([]);
@@ -36,6 +38,8 @@ function App() {
   const [isLoadingMovie, setLoadingMovie] = React.useState(false);
 
   const [serverError, setServerError] = React.useState('');
+
+  const [editing, setEditing] = React.useState(false);
 
   const handleTokenCheck = () => {
     if (localStorage.getItem('jwt')) {
@@ -145,10 +149,13 @@ function App() {
 
   function handleEdit(userInfo) {
     setLoading(true);
+    setUpdateProfileSuccess(false);
     return mainApi.editProfile(userInfo)
       .then((res) => {
         setCurrentUser({ name: res.data.name, email: res.data.email });
         setServerError('');
+        setUpdateProfileSuccess(true);
+        setEditing(false);
       })
       .catch((err) => {
         console.log(`Обновление данных пользователя привело к ошибке ${err}`);
@@ -158,7 +165,9 @@ function App() {
           setServerError('При обновлении профиля произошла ошибка.');
         }
       })
-      .finally((res) => setLoading(false));
+      .finally((res) => {
+        setLoading(false);
+      });
   }
 
   function handleMovieSave(movie) {
@@ -246,7 +255,8 @@ function App() {
             <Route path="/signin" element={<Login handleLogin={handleLogin} isLoading={isLoading} serverError={serverError} setServerError={setServerError} />} />
             <Route path="/signup" element={<Register onRegister={handleRegister} isLoading={isLoading} serverError={serverError} setServerError={setServerError} />} />
             <Route path="/profile" element={<ProtectedRouteElement element={Profile} isLoading={isLoading} loggedIn={isLoggedIn} setLoggedIn={setLoggedIn}
-              currentUser={currentUser} setCurrentUser={setCurrentUser} onEdit={handleEdit} serverError={serverError} setServerError={setServerError} />} />
+              currentUser={currentUser} setCurrentUser={setCurrentUser} onEdit={handleEdit} serverError={serverError} setServerError={setServerError}
+              updateProfileSuccess={updateProfileSuccess} setUpdateProfileSuccess={setUpdateProfileSuccess} editing = {editing} setEditing = {setEditing}/>} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>

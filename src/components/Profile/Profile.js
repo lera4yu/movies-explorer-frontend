@@ -5,8 +5,13 @@ import { isValidEmail, isValidName } from "../../utils/constants";
 
 function Profile(props) {
 
+  React.useEffect(() => {
+    props.setUpdateProfileSuccess(false);
+  }, []);
+
   const [formValue, setFormValue] = React.useState(props.currentUser);
-  const [editing, setEditing] = React.useState(false);
+
+  const [editing, setEditing] = [props.editing, props.setEditing];
 
   const [errorName, setErrorName] = React.useState('');
   const [errorEmail, setErrorEmail] = React.useState('');
@@ -15,9 +20,12 @@ function Profile(props) {
   const handleChange = (e) => {
     const input = e.target;
     const { name, value } = e.target;
-    
+
     const isValidNameReg = isValidName.test(value);
     const isValidEmailReg = isValidEmail.test(value);
+
+    setError('');
+    props.setServerError('');
 
     if (name === 'name') {
       if (!input.validity.valid) {
@@ -64,6 +72,7 @@ function Profile(props) {
       name: "",
       email: "",
     });
+    props.setUpdateProfileSuccess(false);
   };
 
   const onSubmitForm = (e) => {
@@ -72,12 +81,15 @@ function Profile(props) {
       setError("Имя пользователя и почта не были Вами изменены");
     } else {
       setError('');
-      props.onEdit(formValue).then((res) => props.setCurrentUser(formValue)).then((res) => setEditing(false));
+      props.onEdit(formValue)
+        .then((res) => props.setCurrentUser(formValue))
     }
   };
 
   const onEditClick = () => {
+    props.setUpdateProfileSuccess(false);
     setError('');
+    props.setServerError('');
     setEditing(true);
   }
 
@@ -117,10 +129,11 @@ function Profile(props) {
           {!editing ? (
             <button className="profile__edit" type="button" onClick={onEditClick} key={1}>Редактировать</button>
           ) : (
-            <button className="profile__edit-submit" type="submit" key={2} 
-            disabled= {!formValue.email || !formValue.name || errorName || errorEmail || error}>{props.isLoading ? "Сохранение..." : "Сохранить"}</button>
+            <button className="profile__edit-submit" type="submit" key={2} onClick={() => props.setServerError('')}
+              disabled={!formValue.email || !formValue.name || errorName || errorEmail || error || props.serverError}>{props.isLoading ? "Сохранение..." : "Сохранить"}</button>
           )}
-          <span className="profile__error profile__error-edit" id="editError">{error}</span>
+          <span className="profile__error profile__error-edit" id="editError">{error || props.serverError}</span>
+          <span className={props.updateProfileSuccess ? "profile__error-edit profile__success_message" : "profile__success_message_disabled"}>Данные обновлены успешно!</span>
         </div>
         <div className="profile__exit-container">
           {!editing ? (

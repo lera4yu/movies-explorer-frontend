@@ -103,6 +103,16 @@
   text-align: center;
 }
 
+.profile__success_message {
+  color: black;
+  position: absolute;
+  bottom: 45px;
+}
+
+.profile__success_message_disabled {
+  display: none;
+}
+
 .profile__form-input_type_error {
   color: #FF4062;
 }
