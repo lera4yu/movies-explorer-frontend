@@ -1,4 +1,5 @@
 function FilterCheckBox(props) {
+  console.log(props.isShortChecked);
   const handleCheckBox = () => {
     props.onChange(props.isShortChecked);
   };

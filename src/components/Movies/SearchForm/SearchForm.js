@@ -22,7 +22,7 @@ function SearchForm(props) {
     props.onSearch(inputValue, isShortChecked);
     if (location.pathname === "/movies") {
       localStorage.setItem("selector", inputValue);
-      localStorage.setItem("isShortChecked", JSON.stringify(isShortChecked));
+      localStorage.setItem("isShortChecked", JSON.stringify(!isShortChecked));
     }
   };
 
@@ -42,6 +42,10 @@ function SearchForm(props) {
   const handleCheckbox = () => {
     setShortChecked(!isShortChecked);
     props.handleCheckbox(inputValue, !isShortChecked);
+    if (location.pathname === "/movies") {
+      localStorage.setItem("selector", inputValue);
+      localStorage.setItem("isShortChecked", JSON.stringify(!isShortChecked));
+    }
   }
 
   return (
