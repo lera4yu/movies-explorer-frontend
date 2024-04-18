@@ -72,10 +72,12 @@ function Movies(props) {
     } else {
       setFilteredMovies(props.movies);
     }
+    setMaxItems(maxItemsInitialCount);
   };
 
   const handleCheckbox = (searchData, isShortChecked) => {
     setFilteredMovies(filterMovie(props.movies, searchData, isShortChecked));
+    setMaxItems(maxItemsInitialCount);
   };
 
   React.useEffect(() => {
