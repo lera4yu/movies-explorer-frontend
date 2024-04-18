@@ -28,6 +28,7 @@ function SearchForm(props) {
       localStorage.setItem("selector", inputValue);
       localStorage.setItem("isShortChecked", JSON.stringify(isShortChecked));
     }
+    props.setLoading(false);
   };
 
   React.useEffect(() => {
@@ -51,6 +52,7 @@ function SearchForm(props) {
       localStorage.setItem("selector", inputValue);
       localStorage.setItem("isShortChecked", JSON.stringify(!isShortChecked));
     }
+    props.setLoading(false);
   }
 
   return (

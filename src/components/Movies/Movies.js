@@ -54,6 +54,7 @@ function Movies(props) {
   const [filteredMovies, setFilteredMovies] = [props.filteredMovies, props.setFilteredMovies];
 
   React.useEffect(() => {
+    props.setLoading(true);
     const savedFilteredMovies = localStorage.getItem("filteredMovies");
     const savedInputValue = localStorage.getItem("selector");
     const savedShortChecked = localStorage.getItem("isShortChecked");
@@ -79,10 +80,6 @@ function Movies(props) {
 
   React.useEffect(() => {
     localStorage.setItem("filteredMovies", JSON.stringify(filteredMovies));
-  }, [filteredMovies]);
-
-  React.useEffect(() => {
-    props.setLoading(false);
   }, [filteredMovies]);
 
   return (
