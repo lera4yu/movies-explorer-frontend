@@ -5,8 +5,12 @@ import { IS_VALID_EMAIL_REGULAR, IS_VALID_NAME_REGULAR } from "../../utils/const
 
 function Profile(props) {
 
+  const [editing, setEditing] = [props.editing, props.setEditing];
+
   React.useEffect(() => {
     props.setUpdateProfileSuccess(false);
+    props.setServerError('');
+    setEditing(false);
   }, []);
 
   const [formValue, setFormValue] = React.useState(props.currentUser);
@@ -14,8 +18,6 @@ function Profile(props) {
   React.useEffect(() => {
     setFormValue(props.currentUser);
   }, [props.currentUser]);
-
-  const [editing, setEditing] = [props.editing, props.setEditing];
 
   const [errorName, setErrorName] = React.useState('');
   const [errorEmail, setErrorEmail] = React.useState('');
@@ -85,8 +87,7 @@ function Profile(props) {
       setError("Имя пользователя и почта не были Вами изменены");
     } else {
       setError('');
-      props.onEdit(formValue)
-        .then((res) => props.setCurrentUser(formValue))
+      props.onEdit(formValue);
     }
   };
 

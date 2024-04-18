@@ -9,6 +9,10 @@ import {SCREEN_WIDTH_BIG, SCREEN_WIDTH_MEDIUM, CARD_ITEMS_SIZE_BIG, CARD_ITEMS_S
 
 function Movies(props) {
 
+  React.useEffect(() => {
+    props.setServerError('');
+  }, []);
+
   function getItemsCount() {
     if (window.innerWidth > SCREEN_WIDTH_BIG) {
       return CARD_ITEMS_SIZE_BIG;

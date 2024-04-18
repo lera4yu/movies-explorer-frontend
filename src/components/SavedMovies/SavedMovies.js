@@ -8,6 +8,11 @@ import React from "react";
 import {SCREEN_WIDTH_BIG, SCREEN_WIDTH_MEDIUM, CARD_ITEMS_SIZE_BIG, CARD_ITEMS_SIZE_REGULAR, CARD_ITEMS_SIZE_SMALL, SEC_DELAY} from '../../utils/constants';
 
 function SavedMovies(props) {
+
+  React.useEffect(() => {
+    props.setServerError('');
+  }, []);
+
   function getItemsCount() {
     if (window.innerWidth > SCREEN_WIDTH_BIG) {
       return CARD_ITEMS_SIZE_BIG;
