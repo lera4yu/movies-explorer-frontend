@@ -51,7 +51,7 @@ function App() {
       auth.checkToken(jwt).then((res) => {
         if (res) {
           setLoggedIn(true);
-          if (!(pathname === '/signin' || pathname === 'signup')) {
+          if (!(pathname === '/signin' || pathname === '/signup')) {
             navigate(pathname, { replace: true });
           } else {
             navigate('/movies', { replace: true });
