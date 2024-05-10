@@ -1,0 +1,11 @@
+.page {
+  font-family: 'Inter', 'Arial', sans-serif;
+  --calculate-width: calc(100% - 2 * (calc(70px - ((70 - 50) / (1280 - 768) * (1280px - 100%)))));
+  margin: 0 auto;
+}
+
+.page__container {
+  margin: 0 auto;
+  display: flow-root;
+  padding: 0;
+}
